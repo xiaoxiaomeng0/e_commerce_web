@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MenuItem from "../menu-item.component";
+import MenuItem from "../menu-item/menu-item.component";
 import "./directory.styles.scss";
 
 function Directory() {
