@@ -5,7 +5,9 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import { auth, creatUserProfileDocument } from "../../firebase/firebase.utils";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+
+import "./sign-up.styles.scss";
 
 function SignUp() {
   const [values, setValues] = useState({

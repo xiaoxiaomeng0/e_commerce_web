@@ -22,7 +22,6 @@ const config = {
 const app = initializeApp(config);
 
 export const auth = getAuth();
-export const stateChanged = onAuthStateChanged;
 export const firestore = getFirestore(app);
 
 export const creatUserProfileDocument = async (userAuth, additionalData) => {

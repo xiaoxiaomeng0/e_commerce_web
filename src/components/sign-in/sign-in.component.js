@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+
 import "./sign-in.styles.scss";
 
 function SignIn() {
@@ -12,8 +14,15 @@ function SignIn() {
     password: "",
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const { email, password } = values;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setValues({ email: "", password: "" });
+    } catch (error) {
+      console.log("error message:", error);
+    }
   };
   const handleChange = (event) => {
     const { value, name } = event.target;
