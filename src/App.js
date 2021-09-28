@@ -13,19 +13,25 @@ import { onAuthStateChanged } from "firebase/auth";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   let unsubscribeFromAuth = null;
+  console.log("the current user is: ", currentUser);
   useEffect(() => {
-    unsubscribeFromAuth = onAuthStateChanged(auth, async (user) => {
+    const callbackOnAuthChanged = async (user) => {
       if (user) {
-        console.log("before creating");
+        console.log("Before creating, Current User: ", currentUser);
+        console.log("Before creating, user: ", user);
         const userSnap = await creatUserProfileDocument(user);
+        console.log("userSnap.id: ", userSnap.id);
         setCurrentUser({
           id: userSnap.id,
           ...userSnap.data(),
         });
-        console.log(currentUser);
+        console.log("Auth State Changed! Current User: ", currentUser);
+      } else {
+        setCurrentUser(null);
       }
-      setCurrentUser(user);
-    });
+    };
+
+    unsubscribeFromAuth = onAuthStateChanged(auth, callbackOnAuthChanged);
     return unsubscribeFromAuth;
   }, []);
 

@@ -84,7 +84,6 @@ function SignUp() {
           required
         />
         <CustomButton>Sign Up</CustomButton>
-        <CustomButton>Sign Up with Google Account</CustomButton>
       </form>
     </div>
   );
